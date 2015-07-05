@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
-   
+
  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" type="text/css">
 
@@ -24,21 +24,30 @@
 
 </head>
 <body>
+
+<md-toolbar >
+    <md-button ng-click="toggleLeft()">
+        {{test}}
+    </md-button>
+</md-toolbar>
+
   <div ng-view></div>
 
 <md-sidenav class="md-sidenav-left" md-component-id="left">
     <section>
         <md-toolbar>
-
+	 <h1 class="md-toolbar-tools">Le nid</h1>
         </md-toolbar>
     </section>
 
-        <section layout="column" ng-show="userConnected"  >
+        <section layout="column" >
+                <md-button class="md-raised md-primary" ng-click="go('/home')">HOME</md-button>
+        </section>
 
+        <section layout="column" >
+		<md-button class="md-raised md-primary" ng-click="go('/music')">MUSIC ROOM</md-button>
         </section>
 </md-sidenav>
-
-  <md-button class="md-raised md-primary">{{test}}</md-button>
 
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
