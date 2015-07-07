@@ -1,7 +1,10 @@
 <?php
 
+//old dir
+//$dir = '/home/pi/achillejs/app/music';
 
-$dir = '/home/pi/achillejs/app/music';
+//usb dir
+$dir = '/mnt/usb/music';
 
 $dh  = opendir($dir);
 

@@ -47,6 +47,7 @@ app.controller('appctrl',function($location,$scope,$mdSidenav,$log,$mdUtil,$time
         $scope.test = "=> le nid en angular is comming soon ... <=";
     $scope.go = function(path){
         $location.path(path);
+	$location.url($location.path());
 	$scope.close();
     }
 
@@ -59,7 +60,7 @@ app.controller('appctrl',function($location,$scope,$mdSidenav,$log,$mdUtil,$time
 
 });
 
-app.controller('musicctrl',function($mdUtil,$scope,$mdSidenav,$http,$routeParams){
+app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$routeParams){
 	$scope.play_song = $routeParams.play_song;
 	$scope.url_play = $routeParams.name;
 
@@ -79,7 +80,6 @@ app.controller('musicctrl',function($mdUtil,$scope,$mdSidenav,$http,$routeParams
 		$scope.stateMusic = "Pause";
 		$scope.url = './php_scripts/play_song.php';
 		$scope.play = function() {
-
 		$http.post($scope.url, $scope.url_play).
 		success(function(data, status) {
 			console.log(data);
@@ -88,6 +88,9 @@ app.controller('musicctrl',function($mdUtil,$scope,$mdSidenav,$http,$routeParams
 		error(function(data, status) {
 			console.log("fail");
 		});
+		$location.search('play_song', null);
+		$location.search('name', null);
+
 		};
 		$scope.play();
 	}
@@ -114,7 +117,6 @@ app.controller('musicctrl',function($mdUtil,$scope,$mdSidenav,$http,$routeParams
 
 
 	$scope.change_song_url = './php_scripts/change_sound_volume.php';
-
         $scope.change_volume = function(){
         $http.post($scope.change_song_url, $scope.volume).
                 success(function(data, status) {
@@ -145,7 +147,6 @@ app.controller('musicctrl',function($mdUtil,$scope,$mdSidenav,$http,$routeParams
         $http.post($scope.get_sound_url, "lol").
                 success(function(data, status) {
                         $scope.volume = parseInt(data);
-
                 })
                 .
                 error(function(data, status) {
