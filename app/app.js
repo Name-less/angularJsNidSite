@@ -63,6 +63,7 @@ app.controller('appctrl',function($location,$scope,$mdSidenav,$log,$mdUtil,$time
 app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$routeParams){
 	$scope.play_song = $routeParams.play_song;
 	$scope.url_play = $routeParams.name;
+	$scope.duration_play = $routeParams.duration;
 
 	$scope.toggleRight = buildToggler('musicnav');
 
@@ -76,7 +77,41 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
       	return debounceFn;
     	};
 	$scope.stateMusic = "Play";
+
+        $scope.json_songs;
+        $scope.get_json_song_url = './php_scripts/get_json_song.php';
+        $scope.get_json_song = function(){
+        $http.post($scope.get_json_song_url, "lol").
+                success(function(data, status) {
+                        $scope.json_songs = data;
+                        //console.log(JSON.stringify(data));
+                })
+                .
+                error(function(data, status) {
+                        console.log("fail");
+                });
+
+        };
+        $scope.get_json_song();
+
 	if($scope.play_song === 'true'){
+		/*var stringToSec = function(data){
+			return 10;
+		}*/
+
+		
+		var href = function(name,duration){
+			var base = "/achillejs/app/index.php#/music?play_song=true&name=";
+			base = base.concat(name);
+			base = base.concat('&duration=');
+			base = base.concat(duration);
+			window.location.href = base;
+		};
+//NEED TO WELL DEFINE LENGHT OF JSON ARRAY AND IT IS GOOD
+		var randomNumber = Math.floor((Math.random() * $scope.json_songs.length) + 1);
+
+		setTimeout(function() { href($scope.json_songs[randomNumber].name,$scope.json_songs[randomNumber].duration); }, stringToSec($scope.duration_play));
+
 		$scope.stateMusic = "Pause";
 		$scope.url = './php_scripts/play_song.php';
 		$scope.play = function() {
@@ -90,6 +125,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 		});
 		$location.search('play_song', null);
 		$location.search('name', null);
+		$location.search('duration', null);
 
 		};
 		$scope.play();
@@ -155,24 +191,6 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 
         };
 	$scope.get_sound();
-
-	$scope.json_songs;
-        $scope.get_json_song_url = './php_scripts/get_json_song.php';
-        $scope.get_json_song = function(){
-        $http.post($scope.get_json_song_url, "lol").
-                success(function(data, status) {
-			$scope.json_songs = data;
-			console.log(JSON.stringify(data));
-                })
-                .
-                error(function(data, status) {
-                        console.log("fail");
-                });
-
-        };
-        $scope.get_json_song();
-
-
 
 });
 
