@@ -50,7 +50,7 @@
         	</md-input-container>
 	</div>
         <div layout="center center" layout-align="center center" ng-repeat="song in json_songs | filter:search | orderBy:'nom'">
-		<md-button ng-href="/achillejs/app/index.php#/music?play_song=true&name={{song.nom}}&duration={{song.duration}}">{{song.nom}}</md-button>
+		<md-button ng-href="/achillejs/app/index.php#/music?play_song=true&name={{song.nom}}">{{song.nom}}</md-button>
         </div>
 
 </head>

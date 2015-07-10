@@ -63,7 +63,6 @@ app.controller('appctrl',function($location,$scope,$mdSidenav,$log,$mdUtil,$time
 app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$routeParams){
 	$scope.play_song = $routeParams.play_song;
 	$scope.url_play = $routeParams.name;
-	$scope.duration_play = $routeParams.duration;
 
 	$scope.toggleRight = buildToggler('musicnav');
 
@@ -94,30 +93,47 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
         };
         $scope.get_json_song();
 
+	var base = "/achillejs/app/index.php#/music?play_song=true&name=";
+        var stringToSec = function(data){
+		var duration = data.split(":");
+		var sec = duration[2].split(".");
+		var duration = duration[0]*3600*1000+duration[1]*60*1000+sec[0]*1000;
+		//console.log(duration);
+                return duration;
+        };
+
+        $scope.get_sound_length_url = './php_scripts/get_sound_length.php';
+        $scope.get_sound_length = function(data){
+        $http.post($scope.get_sound_length_url,data).
+                success(function(data, status) {
+                        console.log(data);
+
+			clearTimeout();
+			var duration = stringToSec(data);
+			var randomNumber = Math.floor((Math.random() * 10) + 1);
+			setTimeout(function() { 
+				//href($scope.json_songs[randomNumber].nom);
+				var base = 'http://lenid.local/achillejs/app/index.php#/music?play_song=true&name=';
+				var sound = $scope.json_songs[randomNumber].nom;
+				location.replace(base.concat(sound.trim())); 
+			},duration);
+
+                })
+                .
+                error(function(data, status) {
+                        console.log("fail");
+                });
+
+        };
+
 	if($scope.play_song === 'true'){
-		/*var stringToSec = function(data){
-			return 10;
-		}*/
-
-		
-		var href = function(name,duration){
-			var base = "/achillejs/app/index.php#/music?play_song=true&name=";
-			base = base.concat(name);
-			base = base.concat('&duration=');
-			base = base.concat(duration);
-			window.location.href = base;
-		};
-//NEED TO WELL DEFINE LENGHT OF JSON ARRAY AND IT IS GOOD
-		var randomNumber = Math.floor((Math.random() * $scope.json_songs.length) + 1);
-
-		setTimeout(function() { href($scope.json_songs[randomNumber].name,$scope.json_songs[randomNumber].duration); }, stringToSec($scope.duration_play));
-
 		$scope.stateMusic = "Pause";
 		$scope.url = './php_scripts/play_song.php';
 		$scope.play = function() {
+ 		$scope.get_sound_length($scope.url_play);
 		$http.post($scope.url, $scope.url_play).
 		success(function(data, status) {
-			console.log(data);
+			//console.log(data);
 		})
 		.
 		error(function(data, status) {
