@@ -54,7 +54,7 @@ app.controller('appctrl',function($location,$scope,$mdSidenav,$log,$mdUtil,$time
     $scope.close = function () {
       $mdSidenav('left').close()
         .then(function () {
-          $log.debug("close LEFT is done");
+          //$log.debug("close LEFT is done");
         });
     };
 
@@ -186,6 +186,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
         $http.post($scope.dl_url, $scope.dl).
                 success(function(data, status) {
                         console.log(data);
+			location.reload();
                 })
                 .
                 error(function(data, status) {

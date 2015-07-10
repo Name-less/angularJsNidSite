@@ -20,5 +20,5 @@
 	//$time = exec("cd /mnt/usb/music;ffmpeg -i The_Good_Life_Chill_2015.mp3 2>&1 | grep Duration | awk '{print $2}' | tr -d ,");
 	//echo $time;
 
-	echo "success";
+	echo $cmd;
 ?>
