@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>My AngularJS App</title>
+  <title>Le Nid</title>
     <link rel="stylesheet" href="app.css">
 
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
