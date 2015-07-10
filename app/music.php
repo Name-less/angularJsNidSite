@@ -47,8 +47,12 @@
 		<md-progress-circular class="md-accent md-hue-1" md-mode="indeterminate"></md-progress-circular>
 	</div>
 	<div layout="center center" layout-align="center center" ng-show="dl_in_process">
-		Stoling song from youtube in process !
+		Stoling sound from youtube in process !
 	</div>
+
+        <div layout="center center" layout-align="center center" ng-show="!dl_in_process">
+		Actual sound played : {{current_song}}
+        </div>
 
 	<div layout="center center" layout-align="center center" ng-show="!dl_in_process">
 	        <md-input-container>

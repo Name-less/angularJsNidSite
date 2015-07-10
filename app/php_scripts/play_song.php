@@ -1,6 +1,9 @@
 <?php
 	$data = file_get_contents("php://input");
 
+	$f = fopen('sound_playing', 'w');
+	file_put_contents('sound_playing',$data);
+
         $name =$data;
         $name = str_replace(' ','\ ',$name);
         $name = str_replace('(','\(',$name);

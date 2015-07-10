@@ -15,6 +15,11 @@ app.constant("appConfig",{
             url : '/home',
             ctrl : 'homectrl',
             file : 'home.php'
+        },
+        chat : {
+            url : '/chat',
+            ctrl : 'chatctrl',
+            file : 'chat.php'
         }
     }
 
@@ -64,6 +69,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 	$scope.play_song = $routeParams.play_song;
 	$scope.url_play = $routeParams.name;
 	$scope.dl_in_process = false;
+	$scope.current_song = 'No sound actually';
 
 	$scope.toggleRight = buildToggler('musicnav');
 
@@ -127,7 +133,22 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 
         };
 
+       $scope.get_sound_playing_url = './php_scripts/get_sound_playing.php';
+        $scope.get_sound_playing = function(){
+        $http.post($scope.get_sound_playing_url,"lol").
+                success(function(data, status) {
+			$scope.current_song = data;
+                })
+                .
+                error(function(data, status) {
+                        console.log("fail");
+                });
+
+        };
+	$scope.get_sound_playing();
+
 	if($scope.play_song === 'true'){
+		$scope.current_song = $scope.play_song;
 		$scope.stateMusic = "Pause";
 		$scope.url = './php_scripts/play_song.php';
 		$scope.play = function() {
@@ -135,6 +156,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 		$http.post($scope.url, $scope.url_play).
 		success(function(data, status) {
 			//console.log(data);
+		$scope.get_sound_playing();
 		})
 		.
 		error(function(data, status) {
@@ -216,3 +238,8 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 app.controller('homectrl',function($scope){
 	$scope.test = "test";
 });
+
+app.controller('chatctrl',function($scope){
+        $scope.test = "test";
+});
+

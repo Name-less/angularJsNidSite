@@ -41,12 +41,17 @@
     </section>
 
         <section layout="column" >
-                <md-button class="md-raised md-primary" ng-click="go('/home')">HOME</md-button>
+                <md-button class="md-raised md-primary" ng-click="go('/home')">INFOS</md-button>
         </section>
 
         <section layout="column" >
 		<md-button class="md-raised md-primary" ng-click="go('/music')">MUSIC ROOM</md-button>
         </section>
+
+	<section layout="column" >
+                <md-button class="md-raised md-primary" ng-click="go('/chat')">CHAT ROOM</md-button>
+        </section>
+
 </md-sidenav>
 
   <script src="bower_components/angular/angular.js"></script>
