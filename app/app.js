@@ -110,7 +110,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 
 			clearTimeout();
 			var duration = stringToSec(data);
-			var randomNumber = Math.floor((Math.random() * 10) + 1);
+			var randomNumber = Math.floor((Math.random() * $scope.json_songs.length) + 1);
 			setTimeout(function() { 
 				//href($scope.json_songs[randomNumber].nom);
 				var base = 'http://lenid.local/achillejs/app/index.php#/music?play_song=true&name=';
