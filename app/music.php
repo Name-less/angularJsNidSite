@@ -43,13 +43,20 @@
                 <md-button ng-click="toggleRight()">SETTINGS</md-button>
         </div>
 
-	<div layout="center center" layout-align="center center">
+	<div layout="center center" layout-align="center center" ng-show="dl_in_process">
+		<md-progress-circular class="md-accent md-hue-1" md-mode="indeterminate"></md-progress-circular>
+	</div>
+	<div layout="center center" layout-align="center center" ng-show="dl_in_process">
+		Stoling song from youtube in process !
+	</div>
+
+	<div layout="center center" layout-align="center center" ng-show="!dl_in_process">
 	        <md-input-container>
         		<label>Trouve ton son</label>
           		<input ng-model="search">
         	</md-input-container>
 	</div>
-        <div layout="center center" layout-align="center center" ng-repeat="song in json_songs | filter:search | orderBy:'nom'">
+        <div layout="center center" layout-align="center center" ng-repeat="song in json_songs | filter:search | orderBy:'nom'" ng-show="!dl_in_process">
 		<md-button ng-href="/achillejs/app/index.php#/music?play_song=true&name={{song.nom}}">{{song.nom}}</md-button>
         </div>
 

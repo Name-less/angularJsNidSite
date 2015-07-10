@@ -63,6 +63,7 @@ app.controller('appctrl',function($location,$scope,$mdSidenav,$log,$mdUtil,$time
 app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$routeParams){
 	$scope.play_song = $routeParams.play_song;
 	$scope.url_play = $routeParams.name;
+	$scope.dl_in_process = false;
 
 	$scope.toggleRight = buildToggler('musicnav');
 
@@ -183,6 +184,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 
 	$scope.dl_url = './php_scripts/dl_video.php';
         $scope.dl_youtube = function(){
+	$scope.dl_in_process = true;
         $http.post($scope.dl_url, $scope.dl).
                 success(function(data, status) {
                         console.log(data);
