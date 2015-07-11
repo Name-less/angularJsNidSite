@@ -258,7 +258,8 @@ app.controller('homectrl',function($http,$scope){
 			$scope.max_temp = kel_to_cel($scope.weather_infos.main.temp_max);
 			$scope.temp = kel_to_cel($scope.weather_infos.main.temp);
 			$scope.weather_type =$scope.weather_infos.weather[0].main;
-                	console.log($scope.city);
+                	$scope.wind_speed = $scope.weather_infos.wind.speed;
+			console.log($scope.city);
 		})
                 .
                 error(function(data, status) {

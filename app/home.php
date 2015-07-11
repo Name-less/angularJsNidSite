@@ -7,6 +7,7 @@
 <body>
 
 <div layout="center center" layout-align="center center">
+	</br>
 	WEATHER
 </div>
 
@@ -23,13 +24,15 @@
 <div  layout="center center" layout-align="center center">
 	CITY : {{city}}
 	</br>
-	TEMERATURE : {{temp}}
+	TEMERATURE : {{temp}} °C
 	</br>
-	MIN : {{min_temp}}
+	MIN : {{min_temp}} °C
 	</br>
-	MAX : {{max_temp}}
+	MAX : {{max_temp}} °C
 	</br>
-	{{weather_type}}
+	WIND : {{wind_speed}} m/s
+	</br>
+	SKY : {{weather_type}}
 </div>
 </head>
 <body>
