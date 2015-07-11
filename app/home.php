@@ -10,7 +10,16 @@
 	WEATHER
 </div>
 
-{{$scope.weather_infos}}
+<div  layout="center center" layout-align="center center">
+</br>
+CITY : {{city}}
+</br>
+TEMERATURE : {{temp}}
+</br>
+MIN : {{min_temp}}
+</br>
+MAX : {{max_temp}}
+</div>
 
 </head>
 <body>

@@ -244,12 +244,19 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 });
 
 app.controller('homectrl',function($http,$scope){
+	var kel = 273.15;
+	var kel_to_cel = function(kel_temp){
+		return (kel_temp - 273.15).toFixed(2);
+	};
 	$scope.test = "test";
 
 	$http.get('http://api.openweathermap.org/data/2.5/weather?q={Toulouse}').
                 success(function(data, status) {
 			$scope.weather_infos = data;
-			console.log(data);
+			$scope.city = data.name;
+			$scope.min_temp = kel_to_cel($scope.weather_infos.main.temp_min);
+			$scope.max_temp = kel_to_cel($scope.weather_infos.main.temp_max);
+			$scope.temp = kel_to_cel($scope.weather_infos.main.temp);
                 })
                 .
                 error(function(data, status) {
