@@ -249,19 +249,23 @@ app.controller('homectrl',function($http,$scope){
 		return (kel_temp - 273.15).toFixed(2);
 	};
 	$scope.test = "test";
-
-	$http.get('http://api.openweathermap.org/data/2.5/weather?q={Toulouse}').
+	$scope.get_weather = function(city){
+	$http.get('http://api.openweathermap.org/data/2.5/weather?q={'.concat(city,'}')).
                 success(function(data, status) {
 			$scope.weather_infos = data;
 			$scope.city = data.name;
 			$scope.min_temp = kel_to_cel($scope.weather_infos.main.temp_min);
 			$scope.max_temp = kel_to_cel($scope.weather_infos.main.temp_max);
 			$scope.temp = kel_to_cel($scope.weather_infos.main.temp);
-                })
+			$scope.weather_type =$scope.weather_infos.weather[0].main;
+                	console.log($scope.city);
+		})
                 .
                 error(function(data, status) {
                         console.log("fail");
                 });
+	};
+	$scope.get_weather('Toulouse');
 	
 });
 
