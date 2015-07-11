@@ -39,6 +39,14 @@
                 </md-button>
 	</div>
       </md-content>
+
+
+	<form action="./php_scripts/upload.php" target="_blank" method="post" enctype="multipart/form-data">
+    		Select sound (mp3) to upload:
+    		<input type="file" name="fileToUpload" id="fileToUpload">
+    		<input type="submit" value="Upload sound" name="submit">
+	</form>
+
     </section>
 </md-sidenav>
 

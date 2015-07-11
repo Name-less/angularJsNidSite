@@ -243,8 +243,19 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 
 });
 
-app.controller('homectrl',function($scope){
+app.controller('homectrl',function($http,$scope){
 	$scope.test = "test";
+
+	$http.get('http://api.openweathermap.org/data/2.5/weather?q={Toulouse}').
+                success(function(data, status) {
+			$scope.weather_infos = data;
+			console.log(data);
+                })
+                .
+                error(function(data, status) {
+                        console.log("fail");
+                });
+	
 });
 
 app.controller('chatctrl',function($scope){

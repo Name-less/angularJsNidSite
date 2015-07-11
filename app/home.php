@@ -7,8 +7,10 @@
 <body>
 
 <div layout="center center" layout-align="center center">
-	HOME
+	WEATHER
 </div>
+
+{{$scope.weather_infos}}
 
 </head>
 <body>
