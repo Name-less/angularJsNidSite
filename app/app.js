@@ -232,6 +232,14 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 
         };
 	$scope.get_sound();
+		
+	$scope.next_sound = function(){
+                 clearTimeout();
+                 var randomNumber = Math.floor((Math.random() * $scope.json_songs.length) + 1);
+                 var base = 'http://lenid.local/achillejs/app/index.php#/music?play_song=true&name=';
+                 var sound = $scope.json_songs[randomNumber].nom;
+                 location.replace(base.concat(sound.trim()));
+	};
 
 });
 

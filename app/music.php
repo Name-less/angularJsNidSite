@@ -33,7 +33,10 @@
 	<div layout-align="center center" layout="center center">
 		<md-button ng-click="play_pause()">
 			{{stateMusic}}
-		</button>
+		</md-button>
+	       <md-button ng-click="next_sound()">
+                        Next
+                </md-button>
 	</div>
       </md-content>
     </section>
