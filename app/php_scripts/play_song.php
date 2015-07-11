@@ -15,7 +15,7 @@
         //old command
 	//$cmd = 'mplayer -idle /home/pi/achillejs/app/music/'.$name.'> /dev/null 2>/dev/null &';
         //usb command
-	$cmd = 'mplayer -idle /mnt/usb/music/'.$name.'> /dev/null 2>/dev/null &';
+	$cmd = 'mplayer -idle /media/usbhd-sda1/music/'.$name.'> /dev/null 2>/dev/null &';
 	exec($cmd);
 
 	//$cmd2 = "cd /mnt/usb/music;ffmpeg -i ".$name." 2>&1 | grep Duration | awk '{print $2}' | tr -d ,";

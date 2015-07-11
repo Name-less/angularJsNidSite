@@ -4,7 +4,7 @@
 //$dir = '/home/pi/achillejs/app/music';
 
 //usb dir
-$dir = '/mnt/usb/music';
+$dir = '/media/usbhd-sda1/music';
 
 $dh  = opendir($dir);
 
