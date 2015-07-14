@@ -6,33 +6,31 @@
 </head>
 <body>
 
-<div layout="center center" layout-align="center center">
-	</br>
-	WEATHER
-</div>
+<div style="width:20%;margin-top:3%;margin-left:3%">
+<md-whiteframe class="md-whiteframe-z1" layout layout-align="center center">
 
-<div  layout="center center" layout-align="center center">
-        </br>
+
+<div>
         <md-input-container>
           <label>Find your city</label>
           <input ng-model="city_find">
         </md-input-container>
-	</br>
         <md-button ng-click="get_weather(city_find)">Get it !</md-button>
+	</br>
+		CITY : {{city}}
+		</br>
+		TEMERATURE : {{temp}} °C
+		</br>
+		MIN : {{min_temp}} °C
+		</br>
+		MAX : {{max_temp}} °C
+		</br>
+		WIND : {{wind_speed}} m/s
+		</br>
+		SKY : {{weather_type}}
+		</br>
 </div>
-
-<div  layout="center center" layout-align="center center">
-	CITY : {{city}}
-	</br>
-	TEMERATURE : {{temp}} °C
-	</br>
-	MIN : {{min_temp}} °C
-	</br>
-	MAX : {{max_temp}} °C
-	</br>
-	WIND : {{wind_speed}} m/s
-	</br>
-	SKY : {{weather_type}}
+</md-whiteframe>
 </div>
 </head>
 <body>
