@@ -42,7 +42,7 @@
 </br>
 <div layout-align="center center" layout="center center">
         <form action="./php_scripts/upload.php" target="_blank" method="post" enctype="multipart/form-data">
-          	<label>Select your file (mp3)</label>
+          	<label>Select your file (mp3, 8Mo Max)</label>
           	<input ng-model="upload" type="file" name="fileToUpload" id="fileToUpload">
                 <md-button type="submit" value="Upload sound" name="submit">Send</md-button>
         </form>
