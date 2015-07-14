@@ -36,7 +36,40 @@ app.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
     }
 }]);
 
-app.controller('appctrl',function($location,$scope,$mdSidenav,$log,$mdUtil,$timeout){
+app.controller('appctrl',function($http,$mdDialog,$location,$scope,$mdSidenav,$log,$mdUtil,$timeout){
+        $scope.is_register_url = './php_scripts/user_management/get_user_from_ip.php';
+        $scope.is_register = function(){
+        $http.post($scope.is_register_url, "lol").
+                success(function(data, status) {
+                        if(data == -1){
+                                $scope.isRegister = false;
+                        }else{
+                                $scope.isRegister = true;
+                                $scope.name = data;
+                        }
+                })
+                .
+                error(function(data, status) {
+                        console.log("fail");
+                });
+
+        };
+        $scope.is_register();
+
+        $scope.save_user_url = './php_scripts/user_management/save_new_user.php';
+        $scope.save_user = function(){
+        $http.post($scope.save_user_url, "lol").
+                success(function(data, status) {
+			 $mdDialog.hide();
+			//console.log(data);
+                })
+                .
+                error(function(data, status) {
+                        console.log("fail");
+                });
+
+        };
+
 	$scope.toggleLeft = buildToggler('left');
 
     function buildToggler(navID) {
@@ -62,6 +95,30 @@ app.controller('appctrl',function($location,$scope,$mdSidenav,$log,$mdUtil,$time
           //$log.debug("close LEFT is done");
         });
     };
+
+  $scope.showAdvanced = function(ev) {
+    $mdDialog.show({
+      controller: 'appctrl',
+      templateUrl: 'register.html',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+    }).then(function(answer) {
+      $scope.alert = 'You said the information was "' + answer + '".';
+    }, function() {
+      $scope.alert = 'You cancelled the dialog.';
+    });
+  };
+
+  $scope.hide = function() {
+	$scope.save_user();
+    	//$mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
 
 });
 
@@ -100,7 +157,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
         };
         $scope.get_json_song();
 
-	var base = "/achillejs/app/index.php#/music?play_song=true&name=";
+	var base = "/index.php#/music?play_song=true&name=";
         var stringToSec = function(data){
 		var duration = data.split(":");
 		var sec = duration[2].split(".");
@@ -113,14 +170,12 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
         $scope.get_sound_length = function(data){
         $http.post($scope.get_sound_length_url,data).
                 success(function(data, status) {
-                        console.log(data);
-
 			clearTimeout();
 			var duration = stringToSec(data);
 			var randomNumber = Math.floor((Math.random() * $scope.json_songs.length) + 1);
 			setTimeout(function() { 
 				//href($scope.json_songs[randomNumber].nom);
-				var base = 'http://lenid.local/achillejs/app/index.php#/music?play_song=true&name=';
+				var base = 'http://lenid.local/index.php#/music?play_song=true&name=';
 				var sound = $scope.json_songs[randomNumber].nom;
 				location.replace(base.concat(sound.trim())); 
 			},duration);
@@ -164,7 +219,6 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 		});
 		$location.search('play_song', null);
 		$location.search('name', null);
-		$location.search('duration', null);
 
 		};
 		$scope.play();
@@ -236,7 +290,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 	$scope.next_sound = function(){
                  clearTimeout();
                  var randomNumber = Math.floor((Math.random() * $scope.json_songs.length) + 1);
-                 var base = 'http://lenid.local/achillejs/app/index.php#/music?play_song=true&name=';
+                 var base = 'http://lenid.local/index.php#/music?play_song=true&name=';
                  var sound = $scope.json_songs[randomNumber].nom;
                  location.replace(base.concat(sound.trim()));
 	};
@@ -273,4 +327,17 @@ app.controller('homectrl',function($http,$scope){
 app.controller('chatctrl',function($scope){
         $scope.test = "test";
 });
+
+app.controller('registerctrl',function($scope, $mdDialog){
+  $scope.hide = function(data) {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+});
+
 

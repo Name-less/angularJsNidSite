@@ -14,6 +14,7 @@ if(isset($_POST["submit"])) {
         echo "File is not an image.";
         $uploadOk = 0;
     }
+        $uploadOk = 1;
 }
 // Check if file already exists
 if (file_exists($target_file)) {

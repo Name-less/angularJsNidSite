@@ -26,8 +26,11 @@
 <body>
 
 <md-toolbar >
-    <md-button ng-click="toggleLeft()">
+    <md-button ng-show="isRegister" ng-click="toggleLeft()">
         {{test}}
+    </md-button>
+    <md-button ng-show="!isRegister" ng-click="showAdvanced($event)">
+        {{test}}{{isRegister}}
     </md-button>
 </md-toolbar>
 
@@ -53,7 +56,6 @@
         </section>
 
 </md-sidenav>
-
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="components/version/version.js"></script>
