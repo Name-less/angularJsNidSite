@@ -28,3 +28,12 @@
   content: "";
   padding: 0;
 }
+
+.box {
+  width: 20% ;
+  color: #000000;
+  margin-left: 3%;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  float:left;
+}
