@@ -302,7 +302,7 @@ app.controller('homectrl',function($http,$scope){
 	var kel_to_cel = function(kel_temp){
 		return (kel_temp - 273.15).toFixed(2);
 	};
-	$scope.test = "test";
+
 	$scope.get_weather = function(city){
 	$http.get('http://api.openweathermap.org/data/2.5/weather?q={'.concat(city,'}')).
                 success(function(data, status) {
@@ -321,7 +321,20 @@ app.controller('homectrl',function($http,$scope){
                 });
 	};
 	$scope.get_weather('Toulouse');
-	
+
+	$scope.get_users_url = './php_scripts/user_management/get_user_connected.php';
+        $scope.get_users = function(){
+        $http.post($scope.get_users_url, "lol").
+                success(function(data, status) {
+                        $scope.users = data;
+                })
+                .
+                error(function(data, status) {
+                        console.log("fail");
+                });
+
+        };
+        $scope.get_users();
 });
 
 app.controller('chatctrl',function($scope){

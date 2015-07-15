@@ -34,7 +34,16 @@
 </div>
 
 <div class="box">
-kvjdfpjvopdfjvpjfpdj
+	<md-whiteframe class="md-whiteframe-z1" layout layout-align="center center">
+		<div>
+		Users connected :
+		</br>
+		</br>
+		<section ng-repeat="user in users">
+			{{user.name}}
+		</section>
+		</div>
+	</md-whiteframe>
 </div>
 
 </body>
