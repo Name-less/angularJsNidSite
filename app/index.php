@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet"  href="app.css">
 
  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css" type="text/css">

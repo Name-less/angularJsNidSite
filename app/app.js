@@ -157,7 +157,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
         };
         $scope.get_json_song();
 
-	var base = "/index.php#/music?play_song=true&name=";
+	var base = "/#/music?play_song=true&name=";
         var stringToSec = function(data){
 		var duration = data.split(":");
 		var sec = duration[2].split(".");
@@ -175,7 +175,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 			var randomNumber = Math.floor((Math.random() * $scope.json_songs.length) + 1);
 			setTimeout(function() { 
 				//href($scope.json_songs[randomNumber].nom);
-				var base = 'http://lenid.local/index.php#/music?play_song=true&name=';
+				var base = 'http://lenid.local/#/music?play_song=true&name=';
 				var sound = $scope.json_songs[randomNumber].nom;
 				location.replace(base.concat(sound.trim())); 
 			},duration);
@@ -290,7 +290,7 @@ app.controller('musicctrl',function($mdUtil,$scope,$location,$mdSidenav,$http,$r
 	$scope.next_sound = function(){
                  clearTimeout();
                  var randomNumber = Math.floor((Math.random() * $scope.json_songs.length) + 1);
-                 var base = 'http://lenid.local/index.php#/music?play_song=true&name=';
+                 var base = 'http://lenid.local/#/music?play_song=true&name=';
                  var sound = $scope.json_songs[randomNumber].nom;
                  location.replace(base.concat(sound.trim()));
 	};

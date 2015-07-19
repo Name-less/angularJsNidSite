@@ -75,7 +75,7 @@
         	</md-input-container>
 	</div>
         <div layout="center center" layout-align="center center" ng-repeat="song in json_songs | filter:search | orderBy:'nom'" ng-show="!dl_in_process">
-		<md-button ng-href="/index.php#/music?play_song=true&name={{song.nom}}">{{song.nom}}</md-button>
+		<md-button ng-href="/#/music?play_song=true&name={{song.nom}}">{{song.nom}}</md-button>
         </div>
 
 </head>
