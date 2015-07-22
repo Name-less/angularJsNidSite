@@ -3,6 +3,7 @@
 var app = angular.module('app',['ngMaterial','ngRoute']);
 
 app.constant("appConfig",{
+    php_script : { path : "/home/pi/achillejs/app/php_scripts/" },
     path : {base : "http://lenid.local/achillejs"},
     routes : {
         baseUrl : '',
@@ -36,8 +37,8 @@ app.config(['$routeProvider','appConfig',function($routeProvider,appConfig){
     }
 }]);
 
-app.controller('appctrl',function($http,$mdDialog,$location,$scope,$mdSidenav,$log,$mdUtil,$timeout){
-        $scope.is_register_url = './php_scripts/user_management/get_user_from_ip.php';
+app.controller('appctrl',function($http,$mdDialog,$location,$scope,$mdSidenav,$log,$mdUtil,$timeout,appConfig){
+        $scope.is_register_url = appConfig.php_script.path.concat('user_management/get_user_from_ip.php');
         $scope.is_register = function(){
         $http.post($scope.is_register_url, "lol").
                 success(function(data, status) {
