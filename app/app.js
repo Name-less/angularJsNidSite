@@ -1,10 +1,10 @@
 'use strict';
 
-var app = angular.module('app',['ngMaterial','ngRoute']);
+var app = angular.module('app',['ngMaterial','ngRoute','network','resourceNetwork']);
 
 app.constant("appConfig",{
     php_script : { path : "/home/pi/achillejs/app/php_scripts/" },
-    path : {base : "http://lenid.local/achillejs"},
+    path : {base : "http://lenid.local"},
     routes : {
         baseUrl : '',
         music : {
@@ -353,5 +353,3 @@ app.controller('registerctrl',function($scope, $mdDialog){
     $mdDialog.hide(answer);
   };
 });
-
-
